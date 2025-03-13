@@ -1,0 +1,6 @@
+framework module Pods_ZMMVVM_Example {
+  umbrella header "Pods-ZMMVVM_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

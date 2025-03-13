@@ -1,0 +1,6 @@
+framework module ZMMVVM {
+  umbrella header "ZMMVVM-umbrella.h"
+
+  export *
+  module * { export * }
+}

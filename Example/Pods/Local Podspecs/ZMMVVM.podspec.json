@@ -1,0 +1,22 @@
+{
+  "name": "ZMMVVM",
+  "version": "0.1.0",
+  "summary": "A short description of ZMMVVM.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/existorlive/ZMMVVM",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "existorlive": "2068531506@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/existorlive/ZMMVVM.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "ZMMVVM/Classes/**/*"
+}
