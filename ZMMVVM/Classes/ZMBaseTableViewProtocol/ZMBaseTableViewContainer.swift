@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 
 // MARK: - ZMBaseTableViewContainerProtocol
-public protocol ZMBaseTableViewContainerProtocol {
+public protocol ZMBaseTableViewContainerProtocol: AnyObject {
     var tableViewProxy: ZMBaseTableViewProxy { get }
 }
 
@@ -18,7 +18,7 @@ public extension ZMBaseTableViewContainerProtocol {
             tableViewProxy.sectionDataArray
         }
         set {
-            tableViewProxy.sectionDataArray
+            tableViewProxy.sectionDataArray = newValue
         }
     }
     
@@ -32,6 +32,15 @@ public class ZMBaseTableViewProxy: NSObject, UITableViewDelegate, UITableViewDat
 
     public var sectionDataArray: [ZMBaseTableViewSectionData] = [] /// 数据源
     
+    public var isEmpty: Bool {
+        if sectionDataArray.isEmpty {
+            return true
+        } else if sectionDataArray.count == 1, sectionDataArray.first?.cellDatas.isEmpty ?? true {
+            return true
+        }
+        return false 
+    }
+    
     public let style: UITableView.Style
     
     public lazy var tableView: UITableView = {
@@ -39,7 +48,7 @@ public class ZMBaseTableViewProxy: NSObject, UITableViewDelegate, UITableViewDat
         let tableView = UITableView(frame: .zero, style: self.style)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .clear
         if #available(iOS 11, *) {
             tableView.estimatedRowHeight = UITableView.automaticDimension
             tableView.estimatedSectionFooterHeight = UITableView.automaticDimension
@@ -65,7 +74,7 @@ public class ZMBaseTableViewProxy: NSObject, UITableViewDelegate, UITableViewDat
     }()
     
     
-    init(style: UITableView.Style) {
+    public init(style: UITableView.Style) {
         self.style = style
         super.init()
     }

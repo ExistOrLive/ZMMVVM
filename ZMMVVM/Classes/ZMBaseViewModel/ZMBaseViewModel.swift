@@ -7,15 +7,14 @@
 import Foundation
 import UIKit
 
-// MARK: - ZMBaseViewModel
+// MARK: - baseViewModel 协议 ZMBaseViewModelProtocol
 @objc public protocol ZMBaseViewModelProtocol: NSObjectProtocol {
     
     @objc var zm_ID: String { get }                               /// ViewModel 业务id
      
-    @objc var zm_view: UIView? {  get set }                           ///  当前关联的view
-        
     @objc var zm_viewController: UIViewController? { get }        ///
     
+    // MARK: Parent and children
     @objc var zm_superViewModel: ZMBaseViewModelProtocol? { get }
     
     @objc var zm_subViewModels: [ZMBaseViewModel] { get }
@@ -30,7 +29,21 @@ import UIKit
     
     @objc func zm_removeAllSubViewModels()
     
+    // MARK: bind view
+    @objc var zm_view: UIView? {  get set }                           ///  当前关联的view
+    
     @objc func zm_reloadView()
+    
+    // MARK: life cycle
+    @objc func zm_viewWillAppear()
+    
+    @objc func zm_viewDidAppear()
+    
+    @objc func zm_viewWillDisappear()
+    
+    @objc func zm_viewDidDisappear()
+    
+    @objc func zm_didReceiveMemoryWarning()
 }
 
 // MARK: - ZMBaseViewModel
@@ -109,6 +122,27 @@ extension ZMBaseViewModel: ZMBaseViewModelProtocol {
             update.zm_fillWithData(data: self)
         }
     }
+    
+    
+    @objc dynamic public func zm_viewWillAppear() {
+        _subViewModels.forEach { $0.zm_viewWillAppear() }
+    }
+    
+    @objc dynamic public func zm_viewDidAppear() {
+        _subViewModels.forEach { $0.zm_viewDidAppear() }
+    }
+    
+    @objc dynamic public func zm_viewWillDisappear() {
+        _subViewModels.forEach { $0.zm_viewWillDisappear() }
+    }
+    
+    @objc dynamic public func zm_viewDidDisappear() {
+        _subViewModels.forEach { $0.zm_viewDidDisappear() }
+    }
+    
+    @objc dynamic public func zm_didReceiveMemoryWarning() {
+        _subViewModels.forEach { $0.zm_didReceiveMemoryWarning() }
+    }
 }
 
 private var subViewModelsKey = 0
@@ -182,5 +216,26 @@ extension UIViewController: ZMBaseViewModelProtocol {
     
     @objc dynamic open func zm_reloadView() {
         //
+    }
+    
+    
+    @objc dynamic public func zm_viewWillAppear() {
+        zm_subViewModels.forEach { $0.zm_viewWillAppear() }
+    }
+    
+    @objc dynamic public func zm_viewDidAppear() {
+        zm_subViewModels.forEach { $0.zm_viewDidAppear() }
+    }
+    
+    @objc dynamic public func zm_viewWillDisappear() {
+        zm_subViewModels.forEach { $0.zm_viewWillDisappear() }
+    }
+    
+    @objc dynamic public func zm_viewDidDisappear() {
+        zm_subViewModels.forEach { $0.zm_viewDidDisappear() }
+    }
+    
+    @objc dynamic public func zm_didReceiveMemoryWarning() {
+        zm_subViewModels.forEach { $0.zm_didReceiveMemoryWarning() }
     }
 }
