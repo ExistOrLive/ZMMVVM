@@ -25,6 +25,8 @@ public protocol ZMBaseTableViewCellDataProtocol {
     /// sectionData
     var zm_sectionData: ZMBaseTableViewSectionData? { get set }
     
+    var zm_cellSwipeActions: UISwipeActionsConfiguration? { get }
+    
     /// 点击cell调用
     func zm_onCellSingleTap()
     /// 清空缓存
@@ -56,6 +58,12 @@ public protocol ZMBaseTableViewCellDataProtocol {
         UITableView.automaticDimension
     }
     
+    /// UITableViewCell 侧滑操作按钮
+    @objc open dynamic var zm_cellSwipeActions: UISwipeActionsConfiguration? {
+        nil
+    }
+    
+    
     @objc open dynamic var zm_indexPath: IndexPath = IndexPath(row: 0, section: 0)
     
     @objc open dynamic var zm_sectionNumber: Int = 0
@@ -67,6 +75,9 @@ public protocol ZMBaseTableViewCellDataProtocol {
     @objc open dynamic func zm_onCellSingleTap() {}
     
     @objc open dynamic func zm_clearCache() {}
+    
+   
+    
     
 //    @objc open dynamic func zm_exposureCell(cellEventTrackIDs: [String]) {}
 //

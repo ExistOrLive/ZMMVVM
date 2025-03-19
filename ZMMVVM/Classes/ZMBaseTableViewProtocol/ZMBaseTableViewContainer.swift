@@ -164,12 +164,18 @@ public extension ZMBaseTableViewProxy {
          }
          return view
      }
-     
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         let sectionModel = sectionDataArray[indexPath.section]
-         let cellModel = sectionModel.cellDatas[indexPath.row]
-         cellModel.zm_onCellSingleTap()
-     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sectionModel = sectionDataArray[indexPath.section]
+        let cellModel = sectionModel.cellDatas[indexPath.row]
+        cellModel.zm_onCellSingleTap()
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let sectionModel = sectionDataArray[indexPath.section]
+        let cellModel = sectionModel.cellDatas[indexPath.row]
+        return cellModel.zm_cellSwipeActions
+    }
 }
 
 // MARK: - 局部刷新安全方法 reload Cell / Section

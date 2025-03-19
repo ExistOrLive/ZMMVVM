@@ -123,24 +123,24 @@ extension ZMBaseViewModel: ZMBaseViewModelProtocol {
         }
     }
     
-    
-    @objc dynamic public func zm_viewWillAppear() {
+
+    @objc dynamic open func zm_viewWillAppear() {
         _subViewModels.forEach { $0.zm_viewWillAppear() }
     }
     
-    @objc dynamic public func zm_viewDidAppear() {
+    @objc dynamic open func zm_viewDidAppear() {
         _subViewModels.forEach { $0.zm_viewDidAppear() }
     }
     
-    @objc dynamic public func zm_viewWillDisappear() {
+    @objc dynamic open func zm_viewWillDisappear() {
         _subViewModels.forEach { $0.zm_viewWillDisappear() }
     }
     
-    @objc dynamic public func zm_viewDidDisappear() {
+    @objc dynamic open func zm_viewDidDisappear() {
         _subViewModels.forEach { $0.zm_viewDidDisappear() }
     }
     
-    @objc dynamic public func zm_didReceiveMemoryWarning() {
+    @objc dynamic open func zm_didReceiveMemoryWarning() {
         _subViewModels.forEach { $0.zm_didReceiveMemoryWarning() }
     }
 }
