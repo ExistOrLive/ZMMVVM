@@ -66,7 +66,7 @@ public class ZMBaseTableViewProxy: NSObject, UITableViewDelegate, UITableViewDat
         tableView.tableHeaderView = UIView(frame: nRect)
         tableView.tableFooterView = UIView(frame: nRect)
         tableView.keyboardDismissMode = .onDrag
-        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.contentInsetAdjustmentBehavior = .automatic
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
