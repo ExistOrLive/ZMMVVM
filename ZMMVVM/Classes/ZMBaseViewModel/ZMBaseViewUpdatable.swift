@@ -30,6 +30,9 @@ public extension ZMBaseViewUpdatableWithViewData where Self: UIView {
                 self.zm_viewModel = viewModel
             }
             zm_fillWithViewData(viewData: viewData)
+            if let viewModel = viewData as? ZMBaseViewModelProtocol {
+                viewModel.zm_onViewUpdated()
+            }
         }
     }
 }

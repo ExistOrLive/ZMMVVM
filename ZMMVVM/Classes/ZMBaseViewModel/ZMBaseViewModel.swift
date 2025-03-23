@@ -34,6 +34,8 @@ import UIKit
     
     @objc func zm_reloadView()
     
+    @objc func zm_onViewUpdated()                      /// 在View执行完zm_fillWithData 时调用
+    
     // MARK: life cycle
     @objc func zm_viewWillAppear()
     
@@ -123,6 +125,9 @@ extension ZMBaseViewModel: ZMBaseViewModelProtocol {
         }
     }
     
+    @objc dynamic open  func zm_onViewUpdated() {
+        
+    }
 
     @objc dynamic open func zm_viewWillAppear() {
         _subViewModels.forEach { $0.zm_viewWillAppear() }
@@ -149,7 +154,7 @@ private var subViewModelsKey = 0
 
 // MARK: - UIViewController + ZMBaseViewModelProtocol
 extension UIViewController: ZMBaseViewModelProtocol {
- 
+   
     @objc dynamic open var zm_ID: String {
         return ""
     }
@@ -217,6 +222,11 @@ extension UIViewController: ZMBaseViewModelProtocol {
     @objc dynamic open func zm_reloadView() {
         //
     }
+    
+    @objc dynamic open func zm_onViewUpdated() {
+        // 
+    }
+    
     
     
     @objc dynamic public func zm_viewWillAppear() {
