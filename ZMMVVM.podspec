@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ZMMVVM'
-  s.version          = '0.1.0'
+  s.version          = '1.3.0'
   s.summary          = 'A short description of ZMMVVM.'
 
 # This description is used to generate tags and improve search results.
@@ -31,6 +31,7 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '10.0'
 
   s.source_files = 'ZMMVVM/Classes/**/*'
+  s.resource_bundle = {"ZMMVVM.privacy"=>"Pod/Privacy/ZMMVVM/PrivacyInfo.xcprivacy"}
   
   # s.resource_bundles = {
   #   'ZMMVVM' => ['ZMMVVM/Assets/*.png']
