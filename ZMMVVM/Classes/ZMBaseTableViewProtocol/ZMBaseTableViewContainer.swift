@@ -27,10 +27,17 @@ public extension ZMBaseTableViewContainerProtocol {
     }
 }
 
+// MARK: - ZMBaseTableViewProxyDelegate
+public protocol ZMBaseTableViewProxyDelegate: UIScrollViewDelegate {
+    
+}
+
 // MARK: - ZMBaseTableViewProxy
 public class ZMBaseTableViewProxy: NSObject, UITableViewDelegate, UITableViewDataSource {
 
     public var sectionDataArray: [ZMBaseTableViewSectionData] = [] /// 数据源
+    
+    public weak var delegate: ZMBaseTableViewProxyDelegate?
     
     public var isEmpty: Bool {
         if sectionDataArray.isEmpty {
@@ -175,6 +182,15 @@ public extension ZMBaseTableViewProxy {
         let sectionModel = sectionDataArray[indexPath.section]
         let cellModel = sectionModel.cellDatas[indexPath.row]
         return cellModel.zm_cellSwipeActions
+    }
+}
+
+
+// MARK: -  UIScrollViewDelegate 默认实现
+public extension ZMBaseTableViewProxy {
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.scrollViewDidScroll?(scrollView)
     }
 }
 
